@@ -13,6 +13,9 @@ def save_request(headers, js):
     lhead = {}
     for k,v in headers:
         lhead[k] = v
-    doc = {'headers': lhead, 'data': json.dumps(js)}
+    json_structured = {}
+    for k,v in js.iteritems():
+        json_structured[k] = v
+    doc = {'headers': lhead, 'data': json.dumps(js), 'structured': json_structured}
     r.db('relayr').table('requests').insert(doc).run()
     
