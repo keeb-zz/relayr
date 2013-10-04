@@ -12,14 +12,8 @@ def index():
 
 def sav():
     print dir(request)
-    data = request.json
-    print data
     if request.json:
-        print 'is a json request'
         save_request(request.headers, request.json)
-        print 'returning successfully'
-    else:
-        print 'received unsupported request (no json data)'
 
     return jsonify(success="success")
 
